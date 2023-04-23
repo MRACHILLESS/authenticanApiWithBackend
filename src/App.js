@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { Switch, Route
+ } from 'react-router-dom';
+import Login from './component/Login';
+import Products from './component/Products';
+import { ToastContainer} from 'react-toastify';
+import ProtectedPath from './component/ProtectedPath';
 
-function App() {
+function App(props) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container my-5'>
+      <Switch>
+        <Route exact path="/login" component={Login}/>
+        {/*endi ProtectedPath otasi buvotti va products bolasi buvotti ushanga protectpath.js ni ichida children bup keladi*/}
+        <ProtectedPath>
+          <Route exact path="/products" component={Products}/>
+        </ProtectedPath>
+
+      </Switch>
+      <ToastContainer/>
+      
     </div>
   );
 }
